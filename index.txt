@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Face Mask Shop</title>
+<style>
+    body { font-family: Arial, sans-serif; text-align: center; background-color: #fffaf0; color: #333; margin:0; padding:0;}
+    header { background-color: #ffcccb; padding: 20px 0;}
+    nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: bold;}
+    h1, h2 { margin: 10px 0;}
+    .btn { background-color: #ff9999; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; display:inline-block; cursor:pointer;}
+    .btn:hover { background-color: #ff6666;}
+    .product-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top:20px;}
+    .product { border: 1px solid #ccc; border-radius:5px; padding: 15px; width: 200px; background-color: #fff;}
+    form input { padding:8px; width:200px; margin:5px 0;}
+</style>
+</head>
+<body>
+<header>
+    <h1>🌸 Global Face Mask Shop 🌸</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#checkout">Checkout</a>
+    </nav>
+</header>
+
+<main>
+    <!-- HOME SECTION -->
+    <section id="home">
+        <h2>Welcome to the Global Face Mask Shop!</h2>
+        <p>Click below to explore our top face mask brands:</p>
+        <button class="btn" onclick="scrollToSection('shop')">Go to Shop</button>
+    </section>
+
+    <!-- SHOP SECTION -->
+    <section id="shop">
+        <h2>Select Your Face Mask</h2>
+        <div class="product-list">
+            <div class="product">
+                <h3>SK-II</h3>
+                <p>Premium Japanese skincare mask.</p>
+                <button class="btn" onclick="addToCart('SK-II')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Dr. Jart+</h3>
+                <p>Korean dermatologist-tested masks.</p>
+                <button class="btn" onclick="addToCart('Dr. Jart+')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>GlamGlow</h3>
+                <p>Popular U.S. skincare mask.</p>
+                <button class="btn" onclick="addToCart('GlamGlow')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Innisfree</h3>
+                <p>Eco-friendly Korean masks.</p>
+                <button class="btn" onclick="addToCart('Innisfree')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>L’Oréal Paris</h3>
+                <p>Global mass-market brand.</p>
+                <button class="btn" onclick="addToCart('L’Oréal Paris')">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKOUT SECTION -->
+    <section id="checkout" style="margin-top:30px;">
+        <h2>Your Cart</h2>
+        <ul id="cart"></ul>
+
+        <h2>Enter Your Details</h2>
+        <form onsubmit="alert('Order placed! Thank you.'); return false;">
+            <input type="text" placeholder="Full Name" required><br>
+            <input type="email" placeholder="Email" required><br>
+            <input type="text" placeholder="Address" required><br>
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </section>
+</main>
+
+<footer style="margin-top:30px; padding:10px; background-color:#ffcccb;">
+    <p>&copy; 2026 Global Face Mask Shop</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(product) {
+    cart.push(product);
+    alert(product + " added to cart!");
+    updateCart();
+}
+
+function updateCart() {
+    const cartList = document.getElementById("cart");
+    if(cart.length === 0) {
+        cartList.innerHTML = "<li>Your cart is empty.</li>";
+    } else {
+        cartList.innerHTML = cart.map(item => "<li>" + item + "</li>").join("");
+    }
+}
+
+// Scroll smoothly to sections
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+// Load cart on page load
+window.onload = function() {
+    updateCart();
+}
+</script>
+</body>
+</html>
